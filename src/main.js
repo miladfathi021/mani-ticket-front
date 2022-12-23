@@ -5,4 +5,10 @@ import router from "./router";
 import store from "./store";
 import "./assets/tailwind.css";
 
-createApp(App).use(store).use(router).mount("#app");
+import VueFeather from "vue-feather";
+
+createApp(App)
+  .use(store)
+  .use(router)
+  .component(VueFeather.name, VueFeather)
+  .mount("#app");
