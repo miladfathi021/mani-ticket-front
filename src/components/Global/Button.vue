@@ -24,6 +24,7 @@ export default {
 .btn {
   line-height: 1.5;
   display: inline-block;
+  cursor: pointer;
 
   &--md {
     padding: 0.375rem 0.75rem;
@@ -50,7 +51,7 @@ export default {
     @apply bg-white border border-theme-1 text-theme-1;
 
     &:hover {
-      @apply bg-theme-1 border-0 text-white;
+      @apply bg-theme-1 text-white;
     }
   }
 }
