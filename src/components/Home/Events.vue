@@ -23,56 +23,17 @@
 <script>
 import EventCard from "@/components/Home/EventCard";
 import Button from "@/components/Global/Button";
+import { mapGetters } from "vuex";
 export default {
   name: "Events",
   components: { Button, EventCard },
+  created() {
+    this.$store.dispatch("event/getEvents");
+  },
   computed: {
-    events() {
-      return [
-        {
-          id: 1,
-          name: "Shakira's new concert",
-          hall: {
-            name: "Milad Tower",
-          },
-          artist: {
-            thumbnail: "https://picsum.photos/500/500.jpg",
-          },
-          thumbnail: "https://picsum.photos/500/500.jpg",
-          start_date: "09 JAN 2022",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab alias, architecto dicta in porro vero? Commodi explicabo nesciunt placeat!",
-        },
-        {
-          id: 2,
-          name: "Shakira's new concert",
-          hall: {
-            name: "Milad Tower",
-          },
-          artist: {
-            thumbnail: "https://picsum.photos/500/500.jpg",
-          },
-          thumbnail: "https://picsum.photos/500/400.jpg",
-          start_date: "09 JAN 2022",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab alias, architecto dicta in porro vero? Commodi explicabo nesciunt placeat!",
-        },
-        {
-          id: 3,
-          name: "Shakira's new concert",
-          hall: {
-            name: "Milad Tower",
-          },
-          artist: {
-            thumbnail: "https://picsum.photos/500/500.jpg",
-          },
-          thumbnail: "https://picsum.photos/400/500.jpg",
-          start_date: "09 JAN 2022",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab alias, architecto dicta in porro vero? Commodi explicabo nesciunt placeat!",
-        },
-      ];
-    },
+    ...mapGetters({
+      events: "event/events",
+    }),
   },
 };
 </script>
