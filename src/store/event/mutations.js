@@ -5,4 +5,10 @@ export default {
   setEventDetails(state, event) {
     state.eventDetails = event;
   },
+  setHall(state, hall) {
+    state.hall = hall;
+  },
+  setSeats(state, seats) {
+    state.seats = seats;
+  },
 };
