@@ -11,4 +11,7 @@ export default {
   setSeats(state, seats) {
     state.seats = seats;
   },
+  setSeatsManual(state, seats) {
+    state.seats = seats;
+  },
 };

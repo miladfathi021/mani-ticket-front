@@ -21,4 +21,11 @@ export default {
       commit("setSeats", response.data);
     });
   },
+  // eslint-disable-next-line no-unused-vars
+  async getSeat({ commit }, payload) {
+    await EventService.getSeat(payload);
+  },
+  async setSeatsManual({ commit }, payload) {
+    await commit("setSeatsManual", payload);
+  },
 };
