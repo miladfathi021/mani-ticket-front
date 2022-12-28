@@ -58,7 +58,11 @@
           :hall="hall"
           @sectionSelected="setSection"
         />
-        <Seats v-if="hallId && sectionId && seats" />
+        <Seats
+          v-if="hallId && sectionId && seats"
+          :seats="seats"
+          :hallId="this.hallId"
+        />
       </div>
     </div>
   </div>
