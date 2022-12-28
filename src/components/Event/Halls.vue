@@ -1,11 +1,14 @@
 <template>
   <div class="card grid grid-cols-1 gap-x-4 gap-y-6 px-12">
-    <span class="text-xl font-semibold text-theme-1 border-b pb-2">
+    <span
+      class="block w-full text-xl font-semibold text-theme-1 border-b pb-2 mt-4"
+    >
       Select a Date
     </span>
     <div
       v-for="(hall, index) in items"
       :key="index"
+      @click="$emit('hallSelected', hall.event_hall_id)"
       class="flex items-center justify-between border border-theme-2 hover:border-theme-1 hover:bg-gray-50 overflow-hidden rounded-lg cursor-pointer"
     >
       <div class="flex items-center">

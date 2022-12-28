@@ -11,4 +11,21 @@ export default {
       commit("setEventDetails", response.data);
     });
   },
+  async getHall({ commit }, id) {
+    await EventService.getHall(id).then((response) => {
+      commit("setHall", response.data);
+    });
+  },
+  async getSeats({ commit }, payload) {
+    await EventService.getSeats(payload).then((response) => {
+      commit("setSeats", response.data);
+    });
+  },
+  // eslint-disable-next-line no-unused-vars
+  async getSeat({ commit }, payload) {
+    await EventService.getSeat(payload);
+  },
+  async setSeatsManual({ commit }, payload) {
+    await commit("setSeatsManual", payload);
+  },
 };

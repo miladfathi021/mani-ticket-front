@@ -48,7 +48,21 @@
     </div>
     <div class="event--right-side">
       <div class="event--right-side__box">
-        <Halls :items="eventDetails.halls" />
+        <Halls
+          v-if="!hallId"
+          :items="eventDetails.halls"
+          @hallSelected="setHall"
+        />
+        <Sections
+          v-if="hallId && !sectionId && hall"
+          :hall="hall"
+          @sectionSelected="setSection"
+        />
+        <Seats
+          v-if="hallId && sectionId && seats"
+          :seats="seats"
+          :hallId="this.hallId"
+        />
       </div>
     </div>
   </div>
@@ -58,18 +72,53 @@
 import { mapGetters } from "vuex";
 import dateTimeMixin from "@/mixins/DateTimeMixin";
 import Halls from "@/components/Event/Halls";
+import Sections from "@/components/Event/Sections";
+import Seats from "@/components/Event/Seats";
 
 export default {
   name: "Event",
-  components: { Halls },
+  components: { Seats, Sections, Halls },
   mixins: [dateTimeMixin],
+  data() {
+    return {
+      hallId: null,
+      sectionId: null,
+    };
+  },
   created() {
     this.$store.dispatch("event/getEventDetails", this.$route.params.id);
+  },
+  watch: {
+    hallId: {
+      handler() {
+        if (!this.hallId) return;
+        this.$store.dispatch("event/getHall", this.hallId);
+      },
+    },
+    sectionId: {
+      handler() {
+        if (!this.sectionId) return;
+        this.$store.dispatch("event/getSeats", {
+          hallId: this.hallId,
+          sectionId: this.sectionId,
+        });
+      },
+    },
   },
   computed: {
     ...mapGetters({
       eventDetails: "event/eventDetails",
+      hall: "event/hall",
+      seats: "event/seats",
     }),
+  },
+  methods: {
+    setHall(id) {
+      this.hallId = id;
+    },
+    setSection(id) {
+      this.sectionId = id;
+    },
   },
 };
 </script>
