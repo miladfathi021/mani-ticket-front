@@ -15,4 +15,10 @@ export default class EventService {
       `/v1/seats/${payload.hallId}/${payload.sectionId}`
     );
   }
+  static getSeat(payload) {
+    return BaseService.getInstance().putData(
+      `/v1/seats/${payload.id}/status`,
+      payload.data
+    );
+  }
 }
