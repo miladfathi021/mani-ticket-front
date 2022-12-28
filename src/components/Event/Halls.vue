@@ -1,6 +1,8 @@
 <template>
   <div class="card grid grid-cols-1 gap-x-4 gap-y-6 px-12">
-    <span class="text-xl font-semibold text-theme-1 border-b pb-2 mt-4">
+    <span
+      class="block w-full text-xl font-semibold text-theme-1 border-b pb-2 mt-4"
+    >
       Select a Date
     </span>
     <div
