@@ -12,21 +12,54 @@
         Stage
       </div>
     </div>
-    <div class="flex items-center flex-wrap">
+    <div class="w-2/3 mx-auto grid items-center" :style="[getGridTemplateCols]">
       <div
         v-for="(seat, index) in seats"
         :key="index"
         @click="selectSeat(seat)"
-        class="ml-4 mb-4 cursor-pointer"
+        class="w-8 h-8 ml-2 mb-4 cursor-pointer"
+        style="transform: rotate(90deg)"
       >
-        <span
-          class="block w-8 h-8 rounded-sm"
-          :class="[
-            seat.seat_status === 'pending' ? 'bg-yellow-600' : 'bg-green-600',
-          ]"
+        <svg
+          id="Layer_1"
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
         >
-          {{ seat.column }}
-        </span>
+          <title>Bus Seat</title>
+          <path
+            :class="[
+              seat.seat_status === 'pending' ? 'cls-yellow' : 'cls-green',
+            ]"
+            d="M36,17.3H80.4a8.88,8.88,0,0,1,6.72-7.25A5.77,5.77,0,0,0,81.57,6H36a5.72,5.72,0,0,0-5.76,5.66A5.71,5.71,0,0,0,36,17.3Z"
+          />
+          <path
+            :class="[
+              seat.seat_status === 'pending' ? 'cls-yellow' : 'cls-green',
+            ]"
+            d="M80.29,82.79H36A5.66,5.66,0,1,0,36,94.1H81.47a6.13,6.13,0,0,0,5.44-3.41A8.77,8.77,0,0,1,80.29,82.79Z"
+          />
+          <path
+            :class="[
+              seat.seat_status === 'pending' ? 'cls-yellow' : 'cls-green',
+            ]"
+            d="M80.08,79.7V20.5H35.92A8.85,8.85,0,0,1,27.17,13h-18a4,4,0,0,0-4.06,4V82.79a4,4,0,0,0,4.06,3.95H27.28a8.65,8.65,0,0,1,8.75-7Z"
+          >
+            l
+          </path>
+          <path
+            :class="[
+              seat.seat_status === 'pending' ? 'cls-yellow' : 'cls-green',
+            ]"
+            d="M89.15,12.93a5.71,5.71,0,0,0-5.76,5.65V82.15a5.76,5.76,0,0,0,11.52,0V18.58A5.71,5.71,0,0,0,89.15,12.93Z"
+          />
+          <path
+            :class="[
+              seat.seat_status === 'pending' ? 'cls-yellow' : 'cls-green',
+            ]"
+            d="M90.21,9.94a8.93,8.93,0,0,0-8.74-7H36a8.94,8.94,0,0,0-8.75,6.93H9.15A7.22,7.22,0,0,0,2,17V82.79a7.06,7.06,0,0,0,7.15,7h18a8.85,8.85,0,0,0,8.75,7.26H81.47A8.91,8.91,0,0,0,90,90.9a8.81,8.81,0,0,0,8-8.75V18.58A8.84,8.84,0,0,0,90.21,9.94ZM36,6H81.57a5.77,5.77,0,0,1,5.55,4.06A8.88,8.88,0,0,0,80.4,17.3H36a5.71,5.71,0,0,1-5.76-5.65A5.72,5.72,0,0,1,36,6ZM27.28,86.74H9.15a4,4,0,0,1-4.06-3.95V17a4,4,0,0,1,4.06-4h18a8.85,8.85,0,0,0,8.75,7.47H80.08V79.7H36A8.65,8.65,0,0,0,27.28,86.74ZM81.47,94.1H36a5.66,5.66,0,1,1,0-11.31H80.29a8.77,8.77,0,0,0,6.62,7.9A6.13,6.13,0,0,1,81.47,94.1ZM94.91,82.15a5.76,5.76,0,0,1-11.52,0V18.58a5.76,5.76,0,0,1,11.52,0Z"
+          />
+        </svg>
       </div>
     </div>
   </div>
@@ -43,6 +76,17 @@ export default {
     hallId: {
       type: Number,
       required: true,
+    },
+  },
+  computed: {
+    getGridTemplateCols() {
+      let seats = JSON.parse(JSON.stringify(this.seats));
+      seats = seats.filter((item) => {
+        if (item.row == 1) {
+          return item;
+        }
+      });
+      return { gridTemplateColumns: `repeat(${seats.length}, 1fr)` };
     },
   },
   mounted() {
@@ -69,4 +113,15 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.cls-green {
+  fill: green;
+  stroke: #000;
+  stroke-miterlimit: 10;
+}
+.cls-yellow {
+  fill: #edc808;
+  stroke: #000;
+  stroke-miterlimit: 10;
+}
+</style>

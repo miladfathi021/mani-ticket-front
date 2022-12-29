@@ -106,6 +106,40 @@ export default {
   }
 }
 .four-section {
-  @apply grid gap-4;
+  @apply grid gap-4 mt-4;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 3fr;
+
+  & div:first-child {
+    @apply flex h-24 bg-theme-3 items-center justify-center text-white font-bold rounded-lg cursor-pointer;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  & div:nth-child(2) {
+    @apply flex h-48 bg-theme-5 items-center justify-center text-white font-bold rounded-lg cursor-pointer;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+
+  & div:nth-child(3) {
+    @apply flex h-48 bg-theme-4 items-center justify-center text-white font-bold rounded-lg cursor-pointer;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+
+  & div:last-child {
+    @apply flex h-48 bg-theme-5 items-center justify-center text-white font-bold rounded-lg cursor-pointer;
+    grid-column-start: 3;
+    grid-column-end: -1;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
 }
 </style>
